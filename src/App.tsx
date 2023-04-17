@@ -160,13 +160,7 @@ function App() {
           focusValue={oprateSign}
           showText="+"
         />
-        <NumberButton showText="0"/>
-        <CalculateButton 
-          value='none' 
-          showText="" 
-          focusValue={oprateSign}
-          isChangeColor={true}
-        />
+        <NumberButton showText="0" className={['girdTwoColumn']}/>
         <CalculateButton 
           value='addDecimal'
           showText="."

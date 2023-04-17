@@ -1,7 +1,13 @@
 function NumberButton(props: numberBtnType) {
+    const numBtnClass = () => {
+        if(props.className) {
+            return 'numberBtnStyle '+  props.className.join(' ')
+        }
+        return 'numberBtnStyle'
+    }
     return (
         <div 
-            className="numberBtnStyle" 
+            className={numBtnClass()}
             data-value={props.showText}
         >
             {props.showText}
@@ -12,5 +18,6 @@ function NumberButton(props: numberBtnType) {
 export default NumberButton
 
 interface numberBtnType {
-    showText: string
+    showText: string,
+    className?: string[]
 }
