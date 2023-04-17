@@ -4,37 +4,3 @@
   margin: 0 auto;
   text-align: center;
 }
-
-.calculatorWrapper{
-  .displayStyle{
-    min-height: 150px;
-    text-align:right;
-    border: 1px solid white;
-    font-size: 32px;
-  }
-  .controlsStyle{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
-    .calBtnStyle,
-    .numberBtnStyle{
-      padding-top: 32px;
-      padding-bottom: 32px;
-      font-size: 28px;
-      border: 1px solid white;
-    }
-
-    .calBtnStyle:active, 
-    .numberBtnStyle:active,
-    .calBtnActive{
-      background-color: aliceblue;
-      color: red;
-    }
-
-    .girdTwoColumn{
-      grid-column-start: 1;
-      grid-column-end: 3;
-    }
-  }
-}
-
