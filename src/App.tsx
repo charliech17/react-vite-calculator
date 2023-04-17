@@ -4,8 +4,8 @@ import CalculateButton from './components/CalculateButton'
 import NumberButton from './components/NumberButton'
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [calCount,setCalCount] = useState<null | number>(null)
+  const [count, setCount] = useState('0')
+  const [calCount,setCalCount] = useState<null | string>(null)
   const [oprateSign,setOprateSign] = useState('')
   const [saveOprateSign,setSaveOprateSign] = useState('')
 
@@ -19,12 +19,19 @@ function App() {
       if(saveOprateSign) {
         const calCountValue = calCount ? calCount.toString() : 0
         const newInput: string = eventTarget.dataset.value
-        const newCalCount: number = Number(calCountValue.toString() + newInput) 
+        const newCalCount: string = Number(calCountValue.toString() + newInput).toString()
         setOprateSign('')
         setCalCount(newCalCount)
       } else {
         const newInput: string = eventTarget.dataset.value
-        const newCount: number = Number(count.toString() + newInput) 
+        let newCount: string 
+        if(count === '0' || calCount ==='0') {
+          newCount = newInput
+        } else {
+          newCount = (count + newInput)
+        }
+        
+        
         setCount(newCount) 
       }
     } 
@@ -36,6 +43,14 @@ function App() {
       const newSign = eventTarget.dataset.value
       if(oprateSign === newSign) return 
       else {
+        if(newSign === 'addDecimal') {
+          const nowNum = calCount === null ? count : calCount
+          console.log(nowNum.toString().includes('.'),count)
+          if(!nowNum.toString().includes('.')){
+            calCount === null ? setCount(count + '.') : setCalCount(calCount + '.')
+          }
+          return
+        }
         calculateValue()
         if(newSign === 'equal') {
           setCalCount(null)
@@ -44,23 +59,16 @@ function App() {
           return
         }
         if(newSign === 'deleteAll') {
-          setCount(0)
+          setCount('0')
           setCalCount(null)
           setOprateSign('')
           setSaveOprateSign('')
           return
         }
         if(newSign === 'changeSign') {
-          const changeSignNum = calCount === null ? (-1) * count : (-1) * calCount
-          calCount === null ? setCount(changeSignNum) : setCalCount(changeSignNum)
-          return
-        }
-        if(newSign === 'addDecimal') {
-          const nowNum = calCount === null ? count : calCount
-          console.log(nowNum.toString().includes('.'),count)
-          if(!nowNum.toString().includes('.')){
-            calCount === null ? setCount( Number(count.toString() + '.')) : setCalCount(Number(calCount.toString() + '.'))
-          }
+          const changeSignNum:number = calCount === null ? (-1) * Number(count) : (-1) * Number(calCount)
+          const changeSignString = changeSignNum.toString()
+          calCount === null ? setCount(changeSignString) : setCalCount(changeSignString)
           return
         }
         setOprateSign(newSign)
@@ -72,24 +80,24 @@ function App() {
   const calculateValue = () => {
     switch(saveOprateSign) {
       case 'plus':
-        const newPlusValue = Number(count) + Number(calCount)
+        const newPlusValue = (Number(count) + Number(calCount)).toString()
         setCount(newPlusValue) 
         setCalCount(null)
         break;
       case 'minus':
-        const newMinusValue = Number(count) - Number(calCount)
+        const newMinusValue = (Number(count) - Number(calCount)).toString()
         setCount(newMinusValue) 
         setCalCount(null)
         break;
       case 'equal':
         break;
       case 'multiply':
-        const newMultipyValue = Number(count) * Number(calCount)
+        const newMultipyValue = (Number(count) * Number(calCount)).toString()
         setCount(newMultipyValue) 
         setCalCount(null)
         break;
       case 'division':
-        const newDivisionValue = Number(count) / Number(calCount)
+        const newDivisionValue = (Number(count) / Number(calCount)).toString()
         setCount(newDivisionValue) 
         setCalCount(null)
         break;
