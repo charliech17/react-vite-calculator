@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from 'react'
+import { useState } from 'react'
 import './App.scss'
 import CalculateButton from './components/CalculateButton'
 import NumberButton from './components/NumberButton'
@@ -51,6 +51,11 @@ function App() {
           }
           return
         }
+        if(newSign === 'percent') {
+          const newPercentNum = calCount === null ? (Number(count) / 100).toString() : (Number(calCount) / 100).toString()
+          calCount === null ? setCount(newPercentNum) : setCalCount(newPercentNum)
+          return
+        }
         calculateValue()
         if(newSign === 'equal') {
           setCalCount(null)
@@ -88,8 +93,6 @@ function App() {
         const newMinusValue = (Number(count) - Number(calCount)).toString()
         setCount(newMinusValue) 
         setCalCount(null)
-        break;
-      case 'equal':
         break;
       case 'multiply':
         const newMultipyValue = (Number(count) * Number(calCount)).toString()
