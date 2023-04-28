@@ -1,4 +1,4 @@
-import { useState, SetStateAction, Dispatch, KeyboardEvent, useEffect } from 'react'
+import { useState, SetStateAction, Dispatch, memo, useEffect } from 'react'
 import CalculateButton from './CalculateButton'
 import NumberButton from './NumberButton'
 import './ButtonSection.scss'
@@ -211,7 +211,7 @@ function ButtonSection(props: propsType) {
     )
 }
 
-export default ButtonSection
+export default memo(ButtonSection)
 
 interface propsType{
     count: string,

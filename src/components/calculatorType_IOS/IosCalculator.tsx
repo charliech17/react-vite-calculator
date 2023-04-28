@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo } from 'react'
 import ButtonSection from './InnerComponents/ButtonSection'
 import './IosCalculator.scss'
 
@@ -21,4 +21,4 @@ function IosCalculator() {
     )
 }
 
-export default IosCalculator
+export default memo(IosCalculator)
