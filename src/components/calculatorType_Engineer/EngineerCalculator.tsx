@@ -3,12 +3,13 @@ import { useRef, useState } from 'react'
 function EngineerCalculator() {
     const [displayValue, setDisplayValue] = useState('')
     const nowDisplayValue = useRef(displayValue)
-    const markArray = ['+','—','×','÷']
+    const markArray = ['+','-','×','÷']
     const [opHistory,setOpHistory] = useState('')
     
     const handleShowExecBtn = (event: React.MouseEvent<Element> | null) => {
         const eventTarget = event?.target as HTMLElement
         const inputDisplayValue = eventTarget.dataset.value
+        if(inputDisplayValue === 'AC') return clearAllCal()
         if(inputDisplayValue === '=') return handleCalculate()
         if(eventTarget && eventTarget.classList.contains('addDisplay')) {
             if(inputDisplayValue === '.' && displayValue.includes('.')) return
@@ -19,10 +20,14 @@ function EngineerCalculator() {
     }
 
     const handleCalculate =  () => {
+        const orgDisplayVal= nowDisplayValue.current
         calculateMarkOperation('×')
         calculateMarkOperation('÷')
-        calculateMarkOperation('—')
+        calculateMarkOperation('-')
         calculateMarkOperation('+')
+        if(nowDisplayValue.current !== orgDisplayVal) {
+            setOpHistory(`${orgDisplayVal}=${nowDisplayValue.current}`)
+        }
     }
 
     const calculateMarkOperation = (inputMark: string) => {
@@ -33,7 +38,7 @@ function EngineerCalculator() {
             if(inputMark === '×') operationValue = Number(leftNumber) * Number(rightNumber)
             if(inputMark === '÷') operationValue = Number(leftNumber) / Number(rightNumber)
             if(inputMark === '+') operationValue = Number(leftNumber) + Number(rightNumber)
-            if(inputMark === '—') operationValue = Number(leftNumber) - Number(rightNumber)
+            if(inputMark === '-') operationValue = Number(leftNumber) - Number(rightNumber)
             if(!operationValue) return
             console.log('operationValue',operationValue)
             const newReplaceValue = nowDisplayValue.current.replace(
@@ -88,6 +93,11 @@ function EngineerCalculator() {
         return tempReverseString
     }
 
+    const clearAllCal = () => {
+        setDisplayValue("")
+        setOpHistory("")
+    }
+
     return <>
         <section>{displayValue}</section>
         <section>{opHistory}</section>
@@ -95,7 +105,7 @@ function EngineerCalculator() {
             <div className="innerBtn">(</div>
             <div className="innerBtn">)</div>
             <div className="innerBtn">%</div>
-            <div className="innerBtn">AC</div>
+            <div className="innerBtn" data-value="AC">AC</div>
             <div className="innerBtn addDisplay" data-value="7">7</div>
             <div className="innerBtn addDisplay" data-value="8">8</div>
             <div className="innerBtn addDisplay" data-value="9">9</div>
@@ -107,7 +117,7 @@ function EngineerCalculator() {
             <div className="innerBtn addDisplay" data-value="1">1</div>
             <div className="innerBtn addDisplay" data-value="2">2</div>
             <div className="innerBtn addDisplay" data-value="3">3</div>
-            <div className="innerBtn addDisplay" data-value="—">—</div>
+            <div className="innerBtn addDisplay" data-value="-">-</div>
             <div className="innerBtn addDisplay" data-value="0">0</div>
             <div className="innerBtn addDisplay" data-value=".">.</div>
             <div className="innerBtn" data-value="=">=</div>

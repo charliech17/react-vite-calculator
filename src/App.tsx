@@ -4,7 +4,7 @@ import EngineerCalculator from './components/calculatorType_Engineer/EngineerCal
 import { useState } from 'react'
 
 function App() {
-  const [nowCalculator,setNewCalculator] = useState('1')
+  const [nowCalculator,setNewCalculator] = useState('0')
 
   const toggleCalculator = () => {
     switch(nowCalculator) {
