@@ -17,6 +17,13 @@
         color: red;
     }
 
+    .numberBtnStyle{
+        transition: 0.5s;
+        &:active{
+            transition: 0s;
+        }
+    }
+
     .girdTwoColumn{
         grid-column-start: 1;
         grid-column-end: 3;
