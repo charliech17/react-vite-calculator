@@ -1,10 +1,14 @@
-.buttonSectionStyle{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-
-    .innerBtn{
-        padding-top: 32px;
-        padding-bottom: 32px;
-        font-size: 20px;
+.eg-wrapper{
+    max-width: 600px;
+    margin: 0 auto;
+    .buttonSectionStyle{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    
+        .innerBtn{
+            padding-top: 32px;
+            padding-bottom: 32px;
+            font-size: 20px;
+        }
     }
 }

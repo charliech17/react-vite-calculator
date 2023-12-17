@@ -98,7 +98,7 @@ function EngineerCalculator() {
         setOpHistory("")
     }
 
-    return <>
+    return <div className="eg-wrapper">
         <section>{displayValue}</section>
         <section>{opHistory}</section>
         <section className="buttonSectionStyle" onClick={event => handleShowExecBtn(event)}>
@@ -123,7 +123,7 @@ function EngineerCalculator() {
             <div className="innerBtn" data-value="=">=</div>
             <div className="innerBtn addDisplay" data-value="+">+</div>
         </section>
-    </>
+    </div>
 }
 
 export default EngineerCalculator
