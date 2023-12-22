@@ -6,10 +6,15 @@
 }
 
 .switchBtn{
-  max-width: 600px;
+  max-width: calc(600px - 32px);
   margin: 32px auto 0;
   background-color: rgb(249, 185, 75);
   color: black;
   padding: 16px;
-  border: 2px solid white;
+  border-radius: 8px;
+  box-shadow:
+		/* offset-x | offset-y | blur-radius | spread-radius | color */
+		0px 24px 38px 3px hsla(0,0%,0%,0.14), 
+		0px 9px 46px 8px hsla(0,0%,0%,0.12), 
+		0px 11px 15px -7px hsla(0,0%,0%,0.2);
 }

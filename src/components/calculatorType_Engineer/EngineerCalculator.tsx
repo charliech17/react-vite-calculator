@@ -99,8 +99,12 @@ function EngineerCalculator() {
     }
 
     return <div className="eg-wrapper">
-        <section>{displayValue}</section>
-        <section>{opHistory}</section>
+        <div className="display-wrapper">
+            <section className={'result-num ' +  (!displayValue ? 'placeholder' : '')}>
+                {displayValue ? displayValue : '輸入數字開始計算...'}
+            </section>
+            <section>{opHistory}</section>
+        </div>
         <section className="buttonSectionStyle" onClick={event => handleShowExecBtn(event)}>
             <div className="innerBtn">(</div>
             <div className="innerBtn">)</div>
